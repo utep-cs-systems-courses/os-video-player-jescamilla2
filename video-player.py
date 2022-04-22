@@ -81,7 +81,17 @@ t1 ===> [q1] ===> t2 ===> [q2] ===> t3
 q1 = Queue()  # thread1 produces for queue1, thread2 consumes from queue1
 q2 = Queue()  # thread2 produces for queue2, thread3 consumes from queue2
 
-# Create threads that will extract frames, convert the frames, and display the frame
+
+'''
+class threading.Thread(group=None, target=None, name=None, args=(), kwargs={}, *, daemon=None)
+
+This constructor should always be called with keyword arguments. Arguments are:
+
+target is the callable object to be invoked by the run() method. 
+Defaults to None, meaning nothing is called.
+
+args is the argument tuple for the target invocation. Defaults to ().
+'''
 t1 = threading.Thread(target=extract_frames, args=(q1,))
 t2 = threading.Thread(target=convert_to_grayscale, args=(q1, q2 ))
 t3 = threading.Thread(target=display_frames, args=(q2,))
